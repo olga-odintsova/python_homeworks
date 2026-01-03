@@ -7,4 +7,5 @@ class Address:
         self._flat = flat
 
     def to_string(self):
-        return self._zip_code + ', ' + self._city + ', ' + self._street + ', ' + self._building + ' - ' + str(self._flat)
+        return (self._zip_code + ', ' + self._city + ', ' +
+                self._street + ', ' + self._building + ' - ' + str(self._flat))
