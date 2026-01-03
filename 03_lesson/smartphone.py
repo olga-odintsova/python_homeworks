@@ -6,6 +6,3 @@ class Smartphone:
         
     def show(self):
         print(self._brand, '-',  self._model + '.', self._number)
-    
-    
-# атрибут - переменная класса, метод - функции класса
