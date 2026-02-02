@@ -1,4 +1,3 @@
-import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -11,7 +10,8 @@ def test_form():
     driver = webdriver.Chrome(
         service=ChromeService(ChromeDriverManager().install()))
 
-    driver.get("https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html")
+    driver.get(
+        "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html")
     delay_field = driver.find_element(By.CSS_SELECTOR, '#delay')
     delay_field.clear()
     delay_field.send_keys("45")
@@ -28,4 +28,3 @@ def test_form():
     assert result
 
     driver.quit()
-
