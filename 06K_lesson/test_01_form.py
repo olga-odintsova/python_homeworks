@@ -1,15 +1,18 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.edge.service import Service as EdgeService
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 
 def test_form():
-    driver = webdriver.Firefox(
-            service=FirefoxService(GeckoDriverManager().install()))
+    driver = webdriver.Edge(
+        service=EdgeService(EdgeChromiumDriverManager(
+            url="https://msedgedriver.microsoft.com",
+            latest_release_url="https://msedgedriver.microsoft.com/LATEST_RELEASE").install())
+    )
 
     driver.get("https://bonigarcia.dev/selenium-webdriver-java/data-types.html")
     driver.find_element(By.CSS_SELECTOR, 'input[name="first-name"]').send_keys("Иван")
