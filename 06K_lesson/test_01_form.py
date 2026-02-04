@@ -34,7 +34,6 @@ def check_result(name, cls):
 
 
 def test_form():
-
     page = "https://bonigarcia.dev/selenium-webdriver-java/data-types.html"
     driver.get(page)
     change_input('first-name', "Иван")

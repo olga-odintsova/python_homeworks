@@ -1,34 +1,49 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.firefox import GeckoDriverManager
 
 
+driver = webdriver.Firefox(
+    service=FirefoxService(GeckoDriverManager().install()))
+
+
+def change_input(selector, value):
+    pres = EC.presence_of_element_located((By.CSS_SELECTOR, selector))
+    WebDriverWait(driver, 4).until(pres).send_keys(value)
+
+
+def click(selector):
+    pres = EC.presence_of_element_located((By.CSS_SELECTOR, selector))
+    WebDriverWait(driver, 4).until(pres).click()
+
+
+def text(selector):
+    pres = EC.presence_of_element_located((By.CSS_SELECTOR, selector))
+    return WebDriverWait(driver, 4).until(pres).text
+
+
 def test_form():
-    driver = webdriver.Firefox(
-        service=FirefoxService(GeckoDriverManager().install()))
-
     driver.get("https://www.saucedemo.com/")
-    driver.find_element(
-            By.CSS_SELECTOR, '#user-name').send_keys("standard_user")
-    driver.find_element(By.CSS_SELECTOR, '#password').send_keys("secret_sauce")
-    driver.find_element(By.CSS_SELECTOR, '#login-button').click()
 
-    driver.find_element(
-            By.CSS_SELECTOR, '#add-to-cart-sauce-labs-backpack').click()
-    driver.find_element(
-            By.CSS_SELECTOR, '#add-to-cart-sauce-labs-bolt-t-shirt').click()
-    driver.find_element(
-            By.CSS_SELECTOR, '#add-to-cart-sauce-labs-onesie').click()
-    driver.find_element(By.CSS_SELECTOR, '.shopping_cart_link').click()
-    driver.find_element(By.CSS_SELECTOR, '#checkout').click()
+    change_input('#user-name', "standard_user")
+    change_input('#password', "secret_sauce")
+    click('#login-button')
 
-    driver.find_element(By.CSS_SELECTOR, '#first-name').send_keys("Helga")
-    driver.find_element(By.CSS_SELECTOR, '#last-name').send_keys("Odintsova")
-    driver.find_element(By.CSS_SELECTOR, '#postal-code').send_keys("0144")
-    driver.find_element(By.CSS_SELECTOR, '#continue').click()
+    click('#add-to-cart-sauce-labs-backpack')
+    click('#add-to-cart-sauce-labs-bolt-t-shirt')
+    click('#add-to-cart-sauce-labs-onesie')
+    click('.shopping_cart_link')
+    click('#checkout')
 
-    result = driver.find_element(By.CSS_SELECTOR, '.summary_total_label').text
+    change_input('#first-name', "Helga")
+    change_input('#last-name', "Odintsova")
+    change_input('#postal-code', "0144")
+    click('#continue')
+
+    result = text('.summary_total_label')
     print(result)
 
     driver.quit()
