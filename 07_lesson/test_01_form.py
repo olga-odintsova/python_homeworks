@@ -1,10 +1,7 @@
 import pytest
 from selenium import webdriver
 from pages.FormPage import FormPage
-from selenium.webdriver.common.by import By
 from selenium.webdriver.edge.service import Service as EdgeService
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 
@@ -28,4 +25,3 @@ def test_form_submission_flow(driver):
     form_page.fill_form()
     form_page.submit_form()
     form_page.check_form_submission()
-

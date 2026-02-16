@@ -1,9 +1,7 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.edge.service import Service as EdgeService
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
+
 
 class ShopAuthPage:
     def __init__(self, driver):
@@ -21,7 +19,6 @@ class ShopAuthPage:
     def change_input(self, selector, value):
         pres = EC.presence_of_element_located((By.CSS_SELECTOR, selector))
         self.wait.until(pres).send_keys(value)
-
 
     def click(self, selector):
         pres = EC.presence_of_element_located((By.CSS_SELECTOR, selector))

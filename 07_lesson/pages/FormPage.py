@@ -1,9 +1,7 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.edge.service import Service as EdgeService
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
+
 
 class FormPage:
     def __init__(self, driver):
@@ -27,12 +25,10 @@ class FormPage:
         pres = EC.presence_of_element_located((By.CSS_SELECTOR, selector))
         self.wait.until(pres).send_keys(value)
 
-
     def submit_form(self):
         selector = 'button[type="submit"]'
         pres = EC.presence_of_element_located((By.CSS_SELECTOR, selector))
         self.wait.until(pres).click()
-
 
     def check_result(self, name, cls):
         selector = '#' + name
@@ -55,4 +51,3 @@ class FormPage:
             self.check_result(f, 'alert-success')
 
         self.check_result('zip-code', 'alert-danger')
-

@@ -4,11 +4,9 @@ from pages.ShopBasketPage import ShopBasketPage
 from pages.ShopCheckoutPage import ShopCheckoutPage
 from pages.ShopMainPage import ShopMainPage
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service as FirefoxService
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.firefox import GeckoDriverManager
+
 
 @pytest.fixture
 def driver():
@@ -17,6 +15,7 @@ def driver():
     driver.implicitly_wait(3)
     driver.maximize_window()
     yield driver
+
 
 def test_form_submission_flow(driver):
     auth = ShopAuthPage(driver)
