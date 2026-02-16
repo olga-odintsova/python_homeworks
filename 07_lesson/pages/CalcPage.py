@@ -30,4 +30,4 @@ class CalcPage:
                 (By.CSS_SELECTOR, '.screen'), '15')
         )
 
-        assert result
+        return result

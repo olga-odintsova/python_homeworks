@@ -20,4 +20,5 @@ def test_form_submission_flow(driver):
     page.open()
     page.fill_delay()
     page.fill_form()
-    page.check_result()
+    result = page.check_result()
+    assert result
