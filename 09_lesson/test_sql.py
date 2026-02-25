@@ -1,13 +1,13 @@
-from sqlalchemy import create_engine, inspect, text
-from pprint import pprint
+from sqlalchemy import create_engine, text
 
 
-db_connection_string = "postgresql://postgres:postgres@localhost:5432/university"
+db_connection_string = (
+        "postgresql://postgres:postgres@localhost:5432/university")
 db = create_engine(db_connection_string)
 
 
 def get_subject():
-    connection = db.connect() 
+    connection = db.connect()
     result = connection.execute(
             text("SELECT * FROM subject WHERE subject_id = :id"), {'id': 777})
     rows = result.mappings().all()
@@ -16,24 +16,28 @@ def get_subject():
 
 
 def insert_subject():
-    connection = db.connect() 
+    connection = db.connect()
+    sql = 'INSERT INTO subject(subject_id, subject_title) values (:id, :title)'
     connection.execute(
-            text('INSERT INTO subject(subject_id, subject_title) values (:id, :title)'),
+            text(sql),
             {'id': 777, 'title': 'Magick'})
     connection.close()
 
 
 def update_subject():
-    connection = db.connect() 
+    connection = db.connect()
+    sql = 'UPDATE subject SET subject_title = :title WHERE subject_id = :id'
     connection.execute(
-            text('UPDATE subject SET subject_title = :title WHERE subject_id = :id'),
+            text(sql),
             {'id': 777, 'title': 'Thaumaturgy'})
     connection.close()
 
 
 def delete_subject():
-    connection = db.connect() 
-    connection.execute(text('DELETE FROM subject WHERE subject_id = :id'), {'id': 777})
+    connection = db.connect()
+    connection.execute(
+            text('DELETE FROM subject WHERE subject_id = :id'),
+            {'id': 777})
     connection.close()
 
 
