@@ -21,20 +21,21 @@ def driver():
 
 
 @allure.title("Заполнение и отправка веб-формы")
-@allure.description("Тест проверяет корректность заполнения обязательных полей формы и успешность её отправки.")
+@allure.description("Тест проверяет корректность заполнения " +
+                    "обязательных полей формы и успешность её отправки.")
 @allure.feature("Web Forms")
 @allure.severity(allure.severity_level.NORMAL)
 def test_form_submission_flow(driver):
     form_page = FormPage(driver)
-    
+
     with allure.step("Открытие страницы с формой"):
         form_page.open()
-        
+
     with allure.step("Заполнение полей формы"):
         form_page.fill_form()
-        
+
     with allure.step("Отправка формы"):
         form_page.submit_form()
-        
+
     with allure.step("Проверка результата отправки формы"):
         form_page.check_form_submission()
