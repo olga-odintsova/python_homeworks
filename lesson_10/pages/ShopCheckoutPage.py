@@ -8,12 +8,11 @@ class ShopCheckoutPage:
     """Класс Page Object для страницы оформления заказа (Checkout)."""
 
     def __init__(self, driver: WebDriver) -> None:
-        """
-        Инициализирует класс страницы оформления заказа.
+        """Инициализирует класс страницы оформления заказа.
 
         Args:
             driver (WebDriver): Экземпляр веб-драйвера Selenium.
-            
+
         Returns:
             None: Метод ничего не возвращает.
         """
@@ -21,8 +20,8 @@ class ShopCheckoutPage:
         self.wait = WebDriverWait(driver, 4)
 
     def fill_form(self) -> None:
-        """
-        Заполняет форму персональных данных (имя, фамилия, индекс) и переходит к следующему шагу.
+        """Заполняет форму персональных данных (имя, фамилия, индекс) и
+        переходит к следующему шагу.
 
         Returns:
             None: Метод ничего не возвращает.
@@ -33,23 +32,22 @@ class ShopCheckoutPage:
         self.click('#continue')
 
     def get_total(self) -> str:
-        """
-        Получает итоговую сумму заказа (Total) со страницы.
+        """Получает итоговую сумму заказа (Total) со страницы.
 
         Returns:
-            str: Строка, содержащая только числовое значение итоговой суммы (без текста).
+            str: Строка, содержащая только числовое значение
+                итоговой суммы (без текста).
         """
         result = self.text('.summary_total_label')
         return result.split(" ")[1]
 
     def change_input(self, selector: str, value: str) -> None:
-        """
-        Ожидает появления поля ввода и вводит в него переданное значение.
+        """Ожидает появления поля ввода и вводит в него переданное значение.
 
         Args:
             selector (str): CSS-селектор поля ввода.
             value (str): Текст для ввода в поле.
-            
+
         Returns:
             None: Метод ничего не возвращает.
         """
@@ -57,12 +55,11 @@ class ShopCheckoutPage:
         self.wait.until(pres).send_keys(value)
 
     def text(self, selector: str) -> str:
-        """
-        Ожидает появления элемента и возвращает его текстовое содержимое.
+        """Ожидает появления элемента и возвращает его текстовое содержимое.
 
         Args:
             selector (str): CSS-селектор элемента.
-            
+
         Returns:
             str: Текстовое содержимое найденного элемента.
         """
@@ -70,12 +67,11 @@ class ShopCheckoutPage:
         return self.wait.until(pres).text
 
     def click(self, selector: str) -> None:
-        """
-        Ожидает появления элемента на странице и кликает по нему.
+        """Ожидает появления элемента на странице и кликает по нему.
 
         Args:
             selector (str): CSS-селектор элемента.
-            
+
         Returns:
             None: Метод ничего не возвращает.
         """

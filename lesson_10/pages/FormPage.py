@@ -5,15 +5,15 @@ from selenium.webdriver.remote.webdriver import WebDriver
 
 
 class FormPage:
-    """Класс Page Object для взаимодействия со страницей веб-формы (Data Types)."""
+    """Класс Page Object для взаимодействия со страницей веб-формы (Data
+    Types)."""
 
     def __init__(self, driver: WebDriver) -> None:
-        """
-        Инициализирует класс страницы формы.
+        """Инициализирует класс страницы формы.
 
         Args:
             driver (WebDriver): Экземпляр веб-драйвера Selenium.
-            
+
         Returns:
             None: Метод ничего не возвращает.
         """
@@ -33,13 +33,12 @@ class FormPage:
         }
 
     def change_input(self, name: str, value: str) -> None:
-        """
-        Находит поле ввода по атрибуту 'name' и вводит в него значение.
+        """Находит поле ввода по атрибуту 'name' и вводит в него значение.
 
         Args:
             name (str): Значение атрибута 'name' поля ввода.
             value (str): Текст, который необходимо ввести.
-            
+
         Returns:
             None: Метод ничего не возвращает.
         """
@@ -48,8 +47,7 @@ class FormPage:
         self.wait.until(pres).send_keys(value)
 
     def submit_form(self) -> None:
-        """
-        Нажимает кнопку отправки формы (Submit).
+        """Нажимает кнопку отправки формы (Submit).
 
         Returns:
             None: Метод ничего не возвращает.
@@ -59,14 +57,13 @@ class FormPage:
         self.wait.until(pres).click()
 
     def check_result(self, name: str, cls: str) -> None:
-        """
-        Проверяет, содержит ли элемент с указанным ID определенный CSS-класс.
-        Используется assert, поэтому в случае неудачи тест упадет.
+        """Проверяет, содержит ли элемент с указанным ID определенный CSS-
+        класс. Используется assert, поэтому в случае неудачи тест упадет.
 
         Args:
             name (str): Значение атрибута 'id' элемента для проверки.
             cls (str): CSS-класс, наличие которого ожидается у элемента.
-            
+
         Returns:
             None: Метод ничего не возвращает (может выбросить AssertionError).
         """
@@ -76,8 +73,7 @@ class FormPage:
         assert cls in classes
 
     def open(self) -> None:
-        """
-        Открывает тестовую веб-страницу с формой в браузере.
+        """Открывает тестовую веб-страницу с формой в браузере.
 
         Returns:
             None: Метод ничего не возвращает.
@@ -86,8 +82,7 @@ class FormPage:
         self.driver.get(page)
 
     def fill_form(self) -> None:
-        """
-        Заполняет все поля формы, используя словарь 'self.fields'.
+        """Заполняет все поля формы, используя словарь 'self.fields'.
 
         Returns:
             None: Метод ничего не возвращает.
@@ -96,9 +91,9 @@ class FormPage:
             self.change_input(f, v)
 
     def check_form_submission(self) -> None:
-        """
-        Проверяет корректность подсветки полей после отправки формы.
-        Ожидает зеленую подсветку для заполненных полей и красную для пустого 'zip-code'.
+        """Проверяет корректность подсветки полей после отправки формы. Ожидает
+        зеленую подсветку для заполненных полей и красную для пустого 'zip-
+        code'.
 
         Returns:
             None: Метод ничего не возвращает.

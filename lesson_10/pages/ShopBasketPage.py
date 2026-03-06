@@ -8,12 +8,11 @@ class ShopBasketPage:
     """Класс Page Object для страницы корзины покупок."""
 
     def __init__(self, driver: WebDriver) -> None:
-        """
-        Инициализирует класс страницы корзины.
+        """Инициализирует класс страницы корзины.
 
         Args:
             driver (WebDriver): Экземпляр веб-драйвера Selenium.
-            
+
         Returns:
             None: Метод ничего не возвращает.
         """
@@ -21,8 +20,7 @@ class ShopBasketPage:
         self.wait = WebDriverWait(driver, 4)
 
     def checkout(self) -> None:
-        """
-        Нажимает кнопку перехода к оформлению заказа (Checkout).
+        """Нажимает кнопку перехода к оформлению заказа (Checkout).
 
         Returns:
             None: Метод ничего не возвращает.
@@ -30,12 +28,11 @@ class ShopBasketPage:
         self.click('#checkout')
 
     def click(self, selector: str) -> None:
-        """
-        Ожидает появления элемента на странице и кликает по нему.
+        """Ожидает появления элемента на странице и кликает по нему.
 
         Args:
             selector (str): CSS-селектор элемента.
-            
+
         Returns:
             None: Метод ничего не возвращает.
         """

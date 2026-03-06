@@ -8,12 +8,11 @@ class ShopAuthPage:
     """Класс Page Object для страницы авторизации магазина."""
 
     def __init__(self, driver: WebDriver) -> None:
-        """
-        Инициализирует класс страницы авторизации.
+        """Инициализирует класс страницы авторизации.
 
         Args:
             driver (WebDriver): Экземпляр веб-драйвера Selenium.
-            
+
         Returns:
             None: Метод ничего не возвращает.
         """
@@ -21,8 +20,7 @@ class ShopAuthPage:
         self.wait = WebDriverWait(driver, 4)
 
     def open(self) -> None:
-        """
-        Открывает страницу авторизации магазина в браузере.
+        """Открывает страницу авторизации магазина в браузере.
 
         Returns:
             None: Метод ничего не возвращает.
@@ -30,8 +28,8 @@ class ShopAuthPage:
         self.driver.get("https://www.saucedemo.com/")
 
     def auth(self) -> None:
-        """
-        Выполняет вход в систему, заполняя поля логина и пароля стандартными тестовыми данными.
+        """Выполняет вход в систему, заполняя поля логина и пароля стандартными
+        тестовыми данными.
 
         Returns:
             None: Метод ничего не возвращает.
@@ -41,13 +39,12 @@ class ShopAuthPage:
         self.click('#login-button')
 
     def change_input(self, selector: str, value: str) -> None:
-        """
-        Ожидает появления поля ввода и вводит в него переданное значение.
+        """Ожидает появления поля ввода и вводит в него переданное значение.
 
         Args:
             selector (str): CSS-селектор поля ввода.
             value (str): Текст для ввода в поле.
-            
+
         Returns:
             None: Метод ничего не возвращает.
         """
@@ -55,12 +52,11 @@ class ShopAuthPage:
         self.wait.until(pres).send_keys(value)
 
     def click(self, selector: str) -> None:
-        """
-        Ожидает появления элемента на странице и кликает по нему.
+        """Ожидает появления элемента на странице и кликает по нему.
 
         Args:
             selector (str): CSS-селектор элемента.
-            
+
         Returns:
             None: Метод ничего не возвращает.
         """
