@@ -1,4 +1,5 @@
 import pytest
+import allure
 from pages.CalcPage import CalcPage
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -15,10 +16,22 @@ def driver():
     driver.quit()
 
 
+@allure.title("Вычисления калькулятора с искусственной задержкой")
+@allure.description("Тест проверяет корректность расчета суммы двух чисел после установки таймера задержки.")
+@allure.feature("Calculator")
+@allure.severity(allure.severity_level.CRITICAL)
 def test_form_submission_flow(driver):
     page = CalcPage(driver)
-    page.open()
-    page.fill_delay()
-    page.fill_form()
-    result = page.check_result()
-    assert result
+    
+    with allure.step("Открытие страницы калькулятора"):
+        page.open()
+        
+    with allure.step("Установка времени задержки выполнения"):
+        page.fill_delay()
+        
+    with allure.step("Ввод данных для вычисления"):
+        page.fill_form()
+        
+    with allure.step("Ожидание и проверка результата вычисления"):
+        result = page.check_result()
+        assert result
